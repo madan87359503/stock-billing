@@ -1,0 +1,71 @@
+{
+  "name": "stockinfo",
+  "version": "1.0.0",
+  "author": "Your Name",
+  "main": "main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "react-scripts start",
+    "electron": "electron .",
+    "build": "react-scripts build",
+    "postinstall": "electron-builder install-app-deps",
+    "package": "electron-builder --win",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.mycompany.stockinfo",
+    "productName": "stockInfo",
+   "files": [
+  "main.js",
+  "preload.js",
+  "db.js",
+  "database.sqlite",
+  "package.json",
+  "build/**/*"
+],
+"extraMetadata":"main.js",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^26.6.10",
+    "electron-builder": "^24.0.0",
+    "react-scripts": "^5.0.1"
+  },
+  "dependencies": {
+    "better-sqlite3": "11.6.0",
+    "file-saver": "^2.0.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "uuid": "^7.0.3",
+    "web-vitals": "^5.1.0",
+    "xlsx": "^0.18.5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
