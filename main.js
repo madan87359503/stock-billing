@@ -172,3 +172,27 @@ ipcMain.handle("get-bills", () => {
     return { ...bill, items };
   });
 });
+// Update stock
+ipcMain.handle("update-stock", (_, id, stock) => {
+  const quantity = Number(stock.quantity);
+  const amount = Number(stock.amount);
+  const total = quantity * amount;
+
+  db.prepare(
+    `UPDATE stocks
+     SET product=?, type=?, place=?, unit=?, quantity=?, amount=?, total=?, date=?
+     WHERE id=?`
+  ).run(
+    stock.product,
+    stock.type,
+    stock.place,
+    stock.unit,
+    quantity,
+    amount,
+    total,
+    stock.date || "",
+    id
+  );
+
+  return { ...stock, id, quantity, total };
+});
